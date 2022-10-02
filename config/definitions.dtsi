@@ -7,7 +7,7 @@
 #define SPECIAL 5
 
 //homerow
-#define HM_A &hm_asemi LGUI A
+#define HM_A &hm_apos LGUI A
 #define HM_S &hm_sl LALT S
 #define HM_D &hm_dk LCTRL D
 #define HM_F &hm_fj LSHFT F
