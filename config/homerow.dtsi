@@ -1,6 +1,6 @@
 / {
     behaviors {
-        hm_asemi: homerow_asemi {
+        hm_apos: homerow_apos {
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_ASEMI";
         #binding-cells = <2>;
@@ -42,17 +42,6 @@
         flavor = "tap-preferred";
         global-quick-tap;
         bindings = <&kp>, <&kp>;
-        };
-
-        hm_gh: homerow_gh {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_GH";
-        #binding-cells = <2>;
-        tapping-term-ms = <160>;
-        quick-tap-ms = <0>;
-        flavor = "tap-preferred";
-        global-quick-tap;
-        bindings = <&mo>, <&kp>;
         };
 
         th_ht: th_ht {

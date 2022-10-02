@@ -5,9 +5,13 @@
 #include "definitions.dtsi"
 #include "homerow.dtsi"
 #include "combos.dtsi"
-#include "unicode.dtsi"
-#include "tapdances.dtsi"
 
+/* 
+*
+*#include "unicode.dtsi"
+*#include "tapdances.dtsi"
+*
+*/
 / {
         chosen {
                 zmk,matrix_transform = &five_column_transform;
@@ -17,51 +21,94 @@
                 compatible = "zmk,keymap";
 
                 default_layer {
+/* Default
+ *   Encoder Left: Up <-> Down
+ *   Encoder Right: Left <-> Right
+ */
                         bindings = <
    &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P
-   HM_A  HM_S  HM_D  HM_F  HM_G    HM_H  HM_J   HM_K      HM_L    HM_SEMI
-   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH
-      &trans &th_ht SYM TAB &ca_cc_cv   &kp C_PP &th_ht NUM SPACE &trans
-                        >;
-                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
-                };
-
-                sym_layer {
-                        bindings = <
-   &trans       &trans     &kp EQUAL &kp AMPS  &degr      &kp PIPE &kp HASH  &kp LBRC &kp RBRC  &trans
-   &trans       &kp TILDE  &kp STAR  &kp GRAVE &kp SQT    &kp AT   &kp EXCL  &kp LBKT &kp RBKT  &kp DLLR
-   &trans       &trans     &kp PRCNT &kp CARET &kp MINUS  &kp PLUS &kp EQUAL &kp LPAR &kp RPAR  &kp BSLH
-                           &trans    &trans    &trans     &kp UNDER &mo NAV  &trans
+   HM_A  HM_S  HM_D  HM_F  HM_G    HM_H  HM_J   HM_K      HM_L    HM_Apos
+   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp SEMI
+      &lt SPECIAL ESC     &lt  NAV TAB   &lt FUNC SPACE   &lt SYMBOLS ENTER     &lt NUMBERS BSPC &none
                         >;
                         sensor-bindings = <&inc_dec_kp DOWN UP &inc_dec_kp RIGHT LEFT>;
                 };
-
-                num_layer {
+                        nav_layer {
+/* Navi
+ *   Encoder Left: switch virtual desktop 
+ *   Encoder Right: switch virtual desktop
+ */
                         bindings = <
-   &kp F12   &kp F7    &kp F8    &kp F9    &trans      &trans    &kp N7    &kp N8     &kp N9   &trans
-   &kp F11   &kp F4    &kp F5    &kp F6    &trans      &kp PLUS  &kp N4    &kp N5     &kp N6   &kp N0
-   &kp F10   &kp F1    &kp F2    &kp F3    &trans      &kp EQUAL &kp N1    &kp N2     &kp N3   &kp DOT
-                       &trans    &mo NAV   &trans      &trans    &trans    &trans
+       &none       &none       &none      &none       &none            &none   &none   &none &none    &none 
+    &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none     &none &kp LEFT &kp DOWN &kp UP &kp RIGHT 
+     &none       &none       &none       &none       &none            &none &kp HOME  &kp PG_DN &kp PG_UP    &kp END 
+                &none     &none       &none         &kp ENTER     &kp BSPC &none
+                            >;
+
+                            sensor-bindings = <&inc_dec_kp LG(LA(LEFT)) LG(LA(RIGHT)) &inc_dec_kp LG(LC(LEFT)) LG(LC(RIGHT))>;
+                };
+                        func_layer {
+/* Func
+ *
+ *   Encoder Left: -
+ *   Encoder Right: VOL_UP <-> VOL_D
+ */
+                        bindings = <
+     &none  &none  &none   &none   &none            &none &kp        F7 &kp        F8 &kp        F9 &kp     F12 
+     &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none     &none &kp F4        &kp        F5 &kp        F6 &kp        F11 
+      &none  &none  &none   &none   &none      &none  &kp        F1 &kp    F2 &kp   F3 &kp    F10 
+                                   &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
                         >;
-                        sensor-bindings = <&inc_dec_kp DOWN UP &inc_dec_kp RIGHT LEFT>;
+   
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
                 };
-
-                accents_layer {
+                        numbers_layer {
+/* numbers
+ *
+ *   Encoder Left: -
+ *   Encoder Right: VOL_UP <-> VOL_D
+ */
                         bindings = <
-   &a_cir   &trans   &e_aig   &e_grv   &trans   &dead_uml   &u_grv   &i_cir   &o_cir   &trans
-   &a_grv   &trans   &e_cir   &trans   &trans   &dead_cir   &u_cir   &i_uml   &o_uml   &trans
-   &trans   &trans   &c_ced   &trans   &trans   &trans      &trans   &trans   &trans   &trans
-                     &trans   &trans   &trans   &trans      &trans   &trans
+     &kp PRCNT &kp N7 &kp N8 &kp N9 &kp TILDE       &none  &none  &none  &none   &none   
+     &kp GT &kp N4 &kp N5 &kp N6 &kp CARET           &none &kp RSHFT &kp RCTRL &kp  RALT &kp  RGUI 
+     &kp LT &kp N1 &kp N2 &kp N3 &kp EQUAL           &none  &none  &none  &none   &none   
+                                   &kp N0 &kp PLUS &kp MINUS  &none &none &none
                         >;
+   
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_PREV C_NEXT>;
                 };
-
-                nav_layer {
+                symbols_layer {
+/* symbols
+ *
+ *   Encoder Left: -
+ *   Encoder Right: VOL_UP <-> VOL_D
+ */
                         bindings = <
-   BT0        BT1        BT2        BT3       &bt BT_CLR  &kp HOME  &kp PG_DN &kp PG_UP &kp END   &trans
-   &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHFT &trans      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans
-   &trans     &trans     &trans     &trans    &trans      &trans    &trans    &trans    &trans    &trans
-                         &trans     &trans    &trans      &trans    &trans    &trans
-                         >;
+     &kp HASH &kp APOS &kp FSLH &kp LBKT &kp RBKT       &none  &none  &none  &none   &none   
+     &kp DLLR &kp GRAVE &kp PIPE &kp LBRC &kp RBRC         &none &kp RSHFT &kp RCTRL &kp  RALT &kp  RGUI 
+     &kp BSLH &kp AMPS &kp ASTRK &kp LPAR &kp RPAR           &none  &none  &none  &none   &none   
+                                   &kp EXCL &kp QMARK &kp AT  &none &none &none
+                        >;
+   
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_PREV C_NEXT>;
                 };
+                        special_layer {
+/* special
+ *
+ *   Encoder Left: -
+ *   Encoder Right: VOL_UP <-> VOL_D
+ */
+                        bindings = <
+      &none  &none  &none   &none   &none       &none  &none  &none  &none   &none   
+     &bt BT_SEL 4 &bt BT_SEL 3 &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0        &kp C_PREV &kp C_VOL_UP  &kp C_PP &kp C_VOL_DN   &kp C_NEXT   
+    &none &bt   BT_PRV &bt   BT_CLR &bt   BT_NXT &bootloader          &bootloader  &bt   BT_PRV &bt   BT_CLR &bt   BT_NXT &none   
+                                   &none &none &none  &none &none &none
+                        >;
+   
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_PREV C_NEXT>;
+                };        
+
+        
+        
         };
 };
