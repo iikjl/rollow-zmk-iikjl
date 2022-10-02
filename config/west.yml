@@ -1,16 +1,15 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
-
-#     - name: osleg
-#       url-base: https://github.com/osleg
-
-     - name: barbellboards
-      url-base: https://github.com/barbellboards
+  - name: zmkfirmware
+    url-base: https://github.com/zmkfirmware
+  - name: barbellboards
+    url-base: https://github.com/barbellboards
 
 #    - name: nickconway
 #      url-base: https://github.com/nickconway
+
+#     - name: osleg
+#       url-base: https://github.com/osleg
 
   projects:
 
@@ -25,8 +24,8 @@ manifest:
 #      import: app/west.yml
 
     - name: Rollow-ZMK
-       remote: barbellboards
-       revision: barbellboards/rollow
+      remote: barbellboards
+      revision: barbellboards/rollow
       import: app/west.yml
 
   self:
